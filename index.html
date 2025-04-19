@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hokejový Roster Parser</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border: 1px solid #ccc;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hokejový Roster Parser</h1>
+  <textarea id="input" placeholder="Vlož sem soupisku..."></textarea>
+  <button onclick="parseRoster()">Zpracovat</button>
+  
+  <h2>🧤 BRANKÁŘI:</h2>
+  <pre id="goalies">-</pre>
+  
+  <h2>🛡️ OBRÁNCI:</h2>
+  <pre id="defense">-</pre>
+  
+  <h2>🏒 ÚTOČNÍCI:</h2>
+  <pre id="forwards">-</pre>
+
+  <script>
+    function parseRoster() {
+      const input = document.getElementById("input").value;
+
+      // Regulární výrazy pro extrakci hráčů na základě jejich pozice (brankáři, obránci, útočníci)
+      const goalieRegex = /#\d+\s+[^\(]+\s+\((G)\)/g;
+      const defenseRegex = /#\d+\s+[^\(]+\s+\((D)\)/g;
+      const forwardRegex = /#\d+\s+[^\(]+\s+\((F|RW|LW|C)\)/g;
+
+      const extractPlayers = (regex) => {
+        const matches = input.match(regex);
+        if (matches) {
+          // Extrahuje pouze jména hráčů (bez dalších informací)
+          return matches.map(m => m.replace(/#\d+\s+([^\(]+)\s+\([^\)]+\)/, '$1').trim()).join("\n");
+        } else {
+          return "-";
+        }
+      };
+
+      // Aplikace pro získání hráčů podle pozice
+      document.getElementById("goalies").textContent = extractPlayers(goalieRegex);
+      document.getElementById("defense").textContent = extractPlayers(defenseRegex);
+      document.getElementById("forwards").textContent = extractPlayers(forwardRegex);
+    }
+  </script>
+</body>
+</html>
