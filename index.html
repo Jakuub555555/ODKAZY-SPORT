@@ -1,64 +1,54 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hokejový Roster Parser</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    textarea {
-      width: 100%;
-      height: 300px;
-    }
-    pre {
-      background: #f4f4f4;
-      padding: 10px;
-      border: 1px solid #ccc;
-      white-space: pre-wrap;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>ODKAZY SPORT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Žlutý favicon (emoji) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🟡</text></svg>">
+
+    <style>
+        body {
+            background: #0a0a0a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        h1 {
+            font-size: 32px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+        .big-o {
+            font-size: 120px;
+            color: #ffeb3b;
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
+        a {
+            display: block;
+            margin: 18px 0;
+            font-size: 22px;
+            color: #00eaff;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        a:hover {
+            color: #00ffaa;
+        }
+    </style>
 </head>
 <body>
-  <h1>Hokejový Roster Parser</h1>
-  <textarea id="input" placeholder="Vlož sem soupisku..."></textarea>
-  <button onclick="parseRoster()">Zpracovat</button>
-  
-  <h2>🧤 BRANKÁŘI:</h2>
-  <pre id="goalies">-</pre>
-  
-  <h2>🛡️ OBRÁNCI:</h2>
-  <pre id="defense">-</pre>
-  
-  <h2>🏒 ÚTOČNÍCI:</h2>
-  <pre id="forwards">-</pre>
 
-  <script>
-    function parseRoster() {
-      const input = document.getElementById("input").value;
+    <h1>ODKAZY SPORT</h1>
 
-      // Regulární výrazy pro extrakci hráčů na základě jejich pozice (brankáři, obránci, útočníci)
-      const goalieRegex = /#\d+\s+[^\(]+\s+\((G)\)/g;
-      const defenseRegex = /#\d+\s+[^\(]+\s+\((D)\)/g;
-      const forwardRegex = /#\d+\s+[^\(]+\s+\((F|RW|LW|C)\)/g;
+    <div class="big-o">O</div>
 
-      const extractPlayers = (regex) => {
-        const matches = input.match(regex);
-        if (matches) {
-          // Extrahuje pouze jména hráčů (bez dalších informací)
-          return matches.map(m => m.replace(/#\d+\s+([^\(]+)\s+\([^\)]+\)/, '$1').trim()).join("\n");
-        } else {
-          return "-";
-        }
-      };
+    <a href="https://jakuub555555.github.io/historie/" target="_blank">Historie</a>
+    <a href="https://jakuub555555.github.io/analyz/" target="_blank">Analyz</a>
+    <a href="https://jakuub555555.github.io/INTELIGENCEporovnavacka/" target="_blank">Inteligence Porovnávačka</a>
 
-      // Aplikace pro získání hráčů podle pozice
-      document.getElementById("goalies").textContent = extractPlayers(goalieRegex);
-      document.getElementById("defense").textContent = extractPlayers(defenseRegex);
-      document.getElementById("forwards").textContent = extractPlayers(forwardRegex);
-    }
-  </script>
 </body>
 </html>
