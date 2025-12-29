@@ -1,54 +1,196 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <title>ODKAZY SPORT</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>ODKAZY SPORT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Žlutý favicon (emoji) -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🟡</text></svg>">
+<!-- Žlutý favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23ffeb3b%22 /></svg>">
 
-    <style>
-        body {
-            background: #0a0a0a;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 60px 20px;
-        }
-        h1 {
-            font-size: 32px;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-        }
-        .big-o {
-            font-size: 120px;
-            color: #ffeb3b;
-            margin-bottom: 40px;
-            font-weight: bold;
-        }
-        a {
-            display: block;
-            margin: 18px 0;
-            font-size: 22px;
-            color: #00eaff;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-        a:hover {
-            color: #00ffaa;
-        }
-    </style>
+<style>
+/* -------------------- GLOBAL -------------------- */
+body {
+    margin: 0;
+    padding: 0;
+    background:
+        radial-gradient(circle at 0 0, #0a0018, #020005 60%),
+        linear-gradient(135deg, #05000c, #000);
+    font-family: "JetBrains Mono", monospace;
+    color: #eaf5ff;
+    text-align: center;
+    padding: 60px 20px;
+    overflow-x: hidden;
+}
+
+/* -------------------- TITLE -------------------- */
+h1 {
+    font-size: 34px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #00f5ff;
+    text-shadow:
+        0 0 12px rgba(0,245,255,0.7),
+        0 0 22px rgba(0,245,255,0.4),
+        0 0 40px rgba(0,245,255,0.2);
+    margin-bottom: 50px;
+    animation: glowPulse 3s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+    0% { text-shadow: 0 0 12px rgba(0,245,255,0.7); }
+    50% { text-shadow: 0 0 28px rgba(0,245,255,1); }
+    100% { text-shadow: 0 0 12px rgba(0,245,255,0.7); }
+}
+
+/* -------------------- CONTAINER -------------------- */
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px;
+    border-radius: 18px;
+    background: rgba(5,0,15,0.55);
+    border: 1px solid rgba(0,245,255,0.25);
+    box-shadow:
+        0 0 40px rgba(0,0,0,0.9),
+        inset 0 0 40px rgba(0,0,0,0.8),
+        0 0 60px rgba(0,245,255,0.15);
+    backdrop-filter: blur(6px);
+    position: relative;
+}
+
+/* holografický overlay */
+.container::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 18px;
+    background: linear-gradient(135deg,
+        rgba(0,245,255,0.25),
+        transparent 40%,
+        rgba(255,255,255,0.05) 60%,
+        rgba(0,245,255,0.25)
+    );
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+/* -------------------- LINK BLOCK -------------------- */
+.link-block {
+    margin: 30px 0;
+    padding: 22px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #05000b, #030008);
+    border: 1px solid #24103a;
+    box-shadow:
+        inset 0 0 25px rgba(0,0,0,1),
+        0 0 18px rgba(0,245,255,0.15);
+    transition: 0.25s;
+    position: relative;
+    overflow: hidden;
+}
+
+/* glitch efekt */
+.link-block::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(0,245,255,0.15),
+        transparent
+    );
+    transform: translateX(-100%);
+    animation: scan 4s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.link-block:hover {
+    border-color: #00f5ff;
+    box-shadow:
+        0 0 25px rgba(0,245,255,0.4),
+        inset 0 0 30px rgba(0,0,0,1);
+    transform: translateY(-4px);
+}
+
+/* -------------------- LINK -------------------- */
+a {
+    font-size: 24px;
+    color: #00f5ff;
+    text-decoration: none;
+    letter-spacing: 0.12em;
+    text-shadow: 0 0 8px rgba(0,245,255,0.5);
+    transition: 0.2s;
+}
+
+a:hover {
+    color: #00ffbf;
+    text-shadow: 0 0 12px rgba(0,255,191,0.8);
+}
+
+/* -------------------- DESCRIPTION -------------------- */
+.desc {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #8fa0c0;
+    line-height: 1.55;
+    letter-spacing: 0.03em;
+}
+
+/* -------------------- WARNING -------------------- */
+.warning {
+    margin-top: 45px;
+    font-size: 13px;
+    color: #ffeb3b;
+    opacity: 0.85;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 8px rgba(255,235,59,0.4);
+}
+</style>
 </head>
 <body>
 
-    <h1>ODKAZY SPORT</h1>
+<h1>ODKAZY SPORT</h1>
 
-    <div class="big-o">O</div>
+<div class="container">
 
-    <a href="https://jakuub555555.github.io/historie/" target="_blank">Historie</a>
-    <a href="https://jakuub555555.github.io/analyz/" target="_blank">Analyz</a>
-    <a href="https://jakuub555555.github.io/INTELIGENCEporovnavacka/" target="_blank">Inteligence Porovnávačka</a>
+    <div class="link-block">
+        <a href="https://jakuub555555.github.io/historie/" target="_blank">1. HISTORIE</a>
+        <div class="desc">
+            Stránka, kam vložíš první informace zkopírované z Flashscore.<br>
+            Slouží jako základní vstup pro další analýzy.
+        </div>
+    </div>
+
+    <div class="link-block">
+        <a href="https://jakuub555555.github.io/analyz/" target="_blank">2. ANALYZ</a>
+        <div class="desc">
+            Stránka, která vytáhne a zpracuje data z první stránky.<br>
+            Výstup použiješ pro porovnání týmů.
+        </div>
+    </div>
+
+    <div class="link-block">
+        <a href="https://jakuub555555.github.io/INTELIGENCEporovnavacka/" target="_blank">3. INTELIGENCE – POROVNÁVAČ</a>
+        <div class="desc">
+            Sem vložíš nejprve analyzovaný tým A a poté tým B.<br>
+            Použiješ data, která ti vyhodila stránka č. 2.<br>
+            Vložíš je do polí DOMÁCÍ / HOSTÉ.
+        </div>
+    </div>
+
+    <div class="warning">
+        4. Pracuj s daty sám, s profesionálem nebo s nástroji dle vlastního výběru.<br>
+        Není to rada na zaručený úspěch — je to pomocník.<br>
+        Na této stránce ani na ostatních není žádné AI.
+    </div>
+
+</div>
 
 </body>
 </html>
